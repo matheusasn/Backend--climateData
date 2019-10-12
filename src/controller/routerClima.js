@@ -4,12 +4,14 @@ const clima = require('../model/climaData');
 // Cidade Campina grande
 var url = 'https://api.openweathermap.org/data/2.5/weather?id=3403642&APPID=1e2f3297a7e2748e6f170e15ea3388af'; 
 
+//função para recuperar todos os dados da api
 function dadosClimaticos(){
   return axios.get(url)
 }
 
 const dados = dadosClimaticos();
 
+//funcao para chamar a API acada 600000ns = 10m e salvar os dados no banco de dados mongoDB
 funcao = () => {
   dados.then(function(data){
     const temp = data['data']['main']['temp'];

@@ -13,15 +13,18 @@ const dados = dadosClimaticos();
 
 //funcao para chamar a API acada 600000ns = 10m e salvar os dados no banco de dados mongoDB
 funcao = () => {
-  dados.then(function(data){
-    const temp = data['data']['main']['temp'];
-    const temp_max = data['data']['main']['temp_max'];
-    const temp_min = data['data']['main']['temp_min'];
+  dados.then(function (data){
     
+    const temp = data['data']['main']['temp'] - 273.15;
+    const temp_max = data['data']['main']['temp_max'] - 273.15;
+    const temp_min = data['data']['main']['temp_min'] - 273.15;
+
     clima.create({ clima: temp, climaMax: temp_max, climaMin: temp_min } );
 
     console.log(temp)
  
+  }).catch(function(error, res){
+    if(error) return res.send({error: 'ERRO!: '})
   });
 }
 setInterval(funcao, 600000);

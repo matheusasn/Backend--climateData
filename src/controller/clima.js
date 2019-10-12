@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Rota onde o front ira passar os dados da API onde irei salvar esses dados no mongoDB.
 router.get('/dadosClimaticos', async (req, res) =>{
-    const { clima } = req.body;
+    const { clima, climaMax, climaMin } = req.body;
 
     if (clima == null || clima <= 0) return res.json({error: 'Dados invalidos'});
     

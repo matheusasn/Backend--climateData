@@ -26,6 +26,10 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false}));
 
 require('./src/controller/routerClima');
+const climaRoute = require('./src/controller/clima')
 
-server.listen(3000);
+let port = process.env.PORT || 9090;
+server.listen(port);
+
+server.use(climaRoute);
 
